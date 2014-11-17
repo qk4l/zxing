@@ -21,7 +21,7 @@ import com.google.zxing.Result;
 /**
  * <p>Parses a WIFI configuration string. Strings will be of the form:</p>
  *
- * <p>{@code WIFI:T:[network type];S:[network SSID];U:[username];P:[network password];PH:[phase2 authentication];A:[Anonymous Identity];H:[hidden?];;}</p>
+ * <p>{@code WIFI:T:[network type];E:[EAP method];S:[network SSID];U:[username];P:[network password];PH:[phase2 authentication];A:[Anonymous Identity];H:[hidden?];;}</p>
  *
  *
  * <p>The fields can appear in any order. Only "S:" is required.</p>
@@ -47,7 +47,10 @@ public final class WifiResultParser extends ResultParser {
     String type = matchSinglePrefixedField("T:", rawText, ';', false);
     String anon = matchSinglePrefixedField("A:", rawText, ';', false);
     if (type == null) {
-      type = "nopass";
+      type = matchSinglePrefixedField("E:", rawText, ';', false);
+      if (type == null) {
+        type = "nopass";
+      }
     }
     boolean hidden = Boolean.parseBoolean(matchSinglePrefixedField("H:", rawText, ';', false));
     return new WifiParsedResult(type, ssid, pass, username, phase2, anon, hidden);

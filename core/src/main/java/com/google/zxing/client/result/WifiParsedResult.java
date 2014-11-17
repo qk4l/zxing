@@ -57,15 +57,15 @@ public final class WifiParsedResult extends ParsedResult {
   }
 
   public String getUsername() {
-        return username;
+    return username;
   }
 
   public String getPhase2() {
-      return phase2;
+    return phase2;
   }
 
   public String getAnon() {
-      return anon;
+    return anon;
   }
 
   public boolean isHidden() {

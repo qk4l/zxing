@@ -34,13 +34,13 @@ enum NetworkType {
       return WEP;
     }
     if ("PEAP".equals(networkTypeString)) {
-        return EAP;
+      return EAP;
     }
     if ("TTLS".equals(networkTypeString)) {
-        return EAP;
+      return EAP;
     }
     if ("PWD".equals(networkTypeString)) {
-        return EAP;
+      return EAP;
     }
     if ("nopass".equals(networkTypeString)) {
       return NO_PASSWORD;
